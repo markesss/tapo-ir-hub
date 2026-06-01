@@ -1,0 +1,47 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to your Tapo IR hub",
+        "description": "Enter the hub's local IP address and your Tapo (TP-Link) account credentials. Everything is read live from the hub \u2014 nothing is tied to a specific remote or product.",
+        "data": {
+          "host": "Host (IP address)",
+          "username": "Tapo account email",
+          "password": "Tapo account password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate your Tapo IR hub",
+        "description": "Your Tapo credentials were rejected. Enter them again.",
+        "data": {
+          "username": "Tapo account email",
+          "password": "Tapo account password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the hub. Check the IP address and that the hub is reachable on your network.",
+      "invalid_auth": "Invalid Tapo account credentials.",
+      "unknown": "Unexpected error. Check the logs for details."
+    },
+    "abort": {
+      "already_configured": "This Tapo IR hub is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tapo IR hub options",
+        "description": "Set how often the hub is re-queried for new or renamed remotes, and optionally override device names. Overrides are JSON mapping a child device_id to a friendly name, e.g. {\"802...0002\": \"Living Room AC\"}.",
+        "data": {
+          "scan_interval": "Re-query interval (seconds)",
+          "name_overrides": "Name overrides (JSON, optional)"
+        }
+      }
+    },
+    "error": {
+      "invalid_overrides": "Name overrides must be a JSON object mapping device_id to a name."
+    }
+  }
+}

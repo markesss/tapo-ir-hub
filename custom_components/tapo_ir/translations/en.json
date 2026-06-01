@@ -12,8 +12,17 @@
       },
       "reauth_confirm": {
         "title": "Re-authenticate your Tapo IR hub",
-        "description": "Your Tapo credentials were rejected. Enter them again.",
+        "description": "Your Tapo credentials for the hub at {host} were rejected. Enter them again.",
         "data": {
+          "username": "Tapo account email",
+          "password": "Tapo account password"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure your Tapo IR hub",
+        "description": "Update the hub's IP address or your Tapo account credentials. The changes are validated against the same hub before they are saved.",
+        "data": {
+          "host": "Host (IP address)",
           "username": "Tapo account email",
           "password": "Tapo account password"
         }
@@ -26,7 +35,9 @@
     },
     "abort": {
       "already_configured": "This Tapo IR hub is already configured.",
-      "reauth_successful": "Re-authentication was successful."
+      "reauth_successful": "Re-authentication was successful.",
+      "reconfigure_successful": "The Tapo IR hub was reconfigured successfully.",
+      "wrong_hub": "Those credentials connect to a different Tapo IR hub than the one being reconfigured."
     }
   },
   "options": {

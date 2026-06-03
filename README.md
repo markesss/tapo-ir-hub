@@ -99,6 +99,21 @@ Full card options and examples: [`lovelace/README.md`](lovelace/README.md).
 - Home Assistant **2023.4** or newer. The `plugp100` dependency installs
   automatically via HACS.
 
+### Running alongside petretiandrea's "Tapo" integration
+
+Both this integration and the popular
+[petretiandrea **Tapo**](https://github.com/petretiandrea/home-assistant-tapo-p100)
+integration use the same `plugp100` library. Home Assistant installs Python
+dependencies into a single shared environment, so if two integrations pinned
+*incompatible* `plugp100` versions they would repeatedly reinstall over each
+other on every restart — which can leave one of them failing to load (it may
+even show *"this integration doesn't support configuration via the UI"*).
+
+To prevent that, this integration deliberately accepts a **range**
+(`plugp100>=5.1.7,<7.0.0.dev0`) instead of an exact pin, so it happily reuses
+whatever compatible `plugp100` the other integration already installed. The two
+can coexist on the same Home Assistant without fighting.
+
 ## How it works (under the hood)
 
 The hub speaks TP-Link's local **KLAP** protocol. This integration uses

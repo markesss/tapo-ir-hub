@@ -114,6 +114,41 @@ To prevent that, this integration deliberately accepts a **range**
 whatever compatible `plugp100` the other integration already installed. The two
 can coexist on the same Home Assistant without fighting.
 
+### Silencing "Found child device not supported, model Custom"
+
+If your **IR hub (H1xx) is also added to petretiandrea's Tapo integration**, that
+integration will try to poll the hub's IR remotes as if they were sensors/buttons.
+It doesn't recognise them (they report `model Custom`), so on **every poll cycle**
+it logs:
+
+```
+Found child device not supported, model Custom
+Please request support by opening an issue ...
+```
+
+This can pile up to thousands of entries. **It is harmless, comes from the other
+integration (not this one), and does not affect IR control.** You have two ways to
+stop it:
+
+1. **Best — let *this* integration own the IR hub.** If you only use the H1xx hub
+   for its IR remotes (no Tapo door/temperature sensors or smart buttons paired to
+   it), simply **remove that hub from petretiandrea's Tapo integration** and add it
+   here instead. The warnings stop completely. When the hub is auto-discovered by
+   the other integration, click the discovered card's menu and choose **Ignore** so
+   it stops re-appearing.
+
+2. **If the same hub also hosts Tapo sensors/buttons you want**, keep it in both
+   integrations and just silence the noisy logger. Add this to
+   `configuration.yaml` and restart:
+
+   ```yaml
+   logger:
+     logs:
+       HubChildrenComponent: error
+   ```
+
+   That mutes only the unsupported-child warnings; all other logging is unchanged.
+
 ## How it works (under the hood)
 
 The hub speaks TP-Link's local **KLAP** protocol. This integration uses

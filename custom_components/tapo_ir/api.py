@@ -16,7 +16,7 @@ import re
 from typing import Any
 
 from plugp100.common.credentials import AuthCredential
-from plugp100.new.device_factory import connect, DeviceConnectConfiguration
+from plugp100.devices.factory import connect, DeviceConnectConfiguration
 from plugp100.api.requests.tapo_request import TapoRequest
 
 _LOGGER = logging.getLogger(__name__)
